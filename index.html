@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A private interactive scrapbook made with love.">
+  <title>Our Little World ♡</title>
+
+  <!-- Free Google Fonts. You may change these later if you want. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+  <!-- PART 1 STYLE FILE: keep style.css in this same folder. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Decorative elements are styled and animated in style.css. -->
+  <div class="floating-hearts" aria-hidden="true">
+    <span>♡</span><span>✦</span><span>♥</span><span>✿</span><span>♡</span><span>✦</span>
+  </div>
+  <div class="floating-petals" aria-hidden="true">
+    <span>❀</span><span>✿</span><span>❀</span><span>✿</span><span>❀</span>
+  </div>
+
+  <main>
+    <!-- ================================================================
+         LAYER 1 — ROMANTIC LOCK SCREEN
+         ================================================================ -->
+    <section id="lock-screen" class="screen screen--active" aria-labelledby="lock-title">
+      <!--
+        CHANGE THE BACKGROUND IMAGE HERE:
+        Put your image inside an images folder, then change the path below.
+        Example: images/lockscreen.jpg
+      -->
+      <div class="lock-background" style="background-image: url('images/lockscreen-placeholder.jpg');" role="img" aria-label="Placeholder for a romantic background photo"></div>
+      <div class="lock-overlay"></div>
+
+      <div class="lock-card" id="lock-card">
+        <p class="eyebrow">private little world</p>
+        <span class="lock-card__sparkle" aria-hidden="true">✦</span>
+
+        <!-- CHANGE LOCK SCREEN TITLE AND QUESTION HERE -->
+        <h1 id="lock-title">Happy Montheversary Shonaaa Pakhii <span>♡</span></h1>
+        <p class="lock-question handwritten">Hehehehe guess the pass to see Jannn</p>
+        <p class="lock-helper">Six tiny numbers unlock everything.</p>
+
+        <form id="passcode-form" class="passcode-form" novalidate>
+          <label class="sr-only" for="passcode">Enter the six digit passcode</label>
+          <input
+            id="passcode"
+            class="passcode-input"
+            type="password"
+            inputmode="numeric"
+            autocomplete="off"
+            maxlength="6"
+            pattern="[0-9]{6}"
+            placeholder="♡ ♡ ♡ ♡ ♡ ♡"
+            aria-describedby="passcode-message"
+          >
+          <button id="check-passcode" class="button button--primary" type="submit">See if you're right <span aria-hidden="true">♡</span></button>
+        </form>
+
+        <!-- Script changes this message after the password is checked. -->
+        <p id="passcode-message" class="form-message" role="status" aria-live="polite"></p>
+        <div id="heart-burst" class="heart-burst" hidden aria-hidden="true"><span>♥</span><span>♡</span><span>♥</span><span>✦</span><span>♡</span><span>♥</span></div>
+        <button id="unlock-button" class="button button--primary unlock-button" type="button" hidden>Hehehe lets relive our 28 Months Jaan❤️</button>
+
+        <p class="lock-footer handwritten">made with too much love ♡</p>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         LAYER 2 — MONTHIVERSARY SCRAPBOOK
+         This stays hidden until script.js unlocks it.
+         ================================================================ -->
+    <section id="scrapbook" class="screen scrapbook" hidden aria-labelledby="scrapbook-title">
+      <div class="scrapbook-decor scrapbook-decor--flower" aria-hidden="true">❀</div>
+      <div class="scrapbook-decor scrapbook-decor--star" aria-hidden="true">✦</div>
+      <div class="scrapbook-decor scrapbook-decor--heart" aria-hidden="true">♡</div>
+      <div class="scrapbook-arrow handwritten" aria-hidden="true">this way →</div>
+      <header class="scrapbook-hero">
+        <p class="eyebrow">chapter one · our memories</p>
+
+        <!-- CHANGE THE MAIN TITLE HERE -->
+        <h2 id="scrapbook-title" class="handwritten">Happy Montheversary Shonaa</h2>
+        <p class="scrapbook-intro">A few moments that will stay as my core memories. Tap a polaroid to turn it over.</p>
+
+        <!-- ============================================================
+             CHANGE LAYER 2 SPOTIFY EMBED HERE
+             1. Spotify → Share → Embed track/playlist → copy the src URL.
+             2. Replace ONLY the text inside src="..." below.
+             ============================================================ -->
+        <div class="music-card">
+          <div class="music-card__label">
+            <span aria-hidden="true">♫</span>
+            <span class="handwritten">Play this for us in this page</span>
+          </div>
+          <iframe
+            title="a song to describe this page jaan"
+            class="spotify-embed"
+            src="https://open.spotify.com/embed/track/7iSWYBp3QGl3eQyv8l40hs?utm_source=generator&theme=0&si=d6847cb3f19d49ef"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+      </header>
+
+      <div class="memory-wall" aria-label="Interactive memory polaroids">
+        <!-- ============================================================
+             PHOTO 1 — CHANGE IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             Put your own photo in images/ then change src="...".
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--one">
+          <button class="polaroid tilt-left" type="button" aria-expanded="false" aria-label="Flip Favorite memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--rose" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\fev pic.jpeg">
+                <span class="polaroid__caption handwritten">Favorite Memory</span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">Hehehehe THE DAY</span>
+                <span> That day i got something i am gonna cherish and protect for the rest of my life.I couldnt ask for anyone else but you to be my first. And never gonna make you regret for trustig me with yours.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+          <aside class="sticky-note sticky-note--yellow handwritten">the only thing i can feel in this pic is love for you and peace</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 2 — EDIT THIS MEMORY
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--two">
+          <aside class="sticky-note sticky-note--pink handwritten">Amar Shonaa</aside>
+          <button class="polaroid tilt-right" type="button" aria-expanded="false" aria-label="Flip memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--sage" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\fev.JPG">
+                <span class="polaroid__caption handwritten">My favorite Person</span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">Amar Adoreablee pakhii TwT</span>
+                <span>Hehehe ik you dont have this picture. I cant get over how adoreablee you look in this picturee.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 3 — EDIT THIS MEMORY
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--three">
+          <button class="polaroid tilt-soft-left" type="button" aria-expanded="false" aria-label="Flip Just You and Me memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--cream" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\you and me.jpeg">
+                <span class="polaroid__caption handwritten">Just you &amp; me </span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">My home person</span>
+                <span>Holding you feels like home to me jaan. Gives me peace like nothing can.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+          <aside class="sticky-note sticky-note--blue handwritten">I lucky to<br>in my life jaan ♡</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 4 — EDIT THIS MEMORY
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--four">
+          <aside class="ticket-stub" aria-label="Memory ticket">Dating you has been the greatest joy in my life.</aside>
+          <button class="polaroid tilt-soft-right" type="button" aria-expanded="false" aria-label="Flip Little Date memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--rose" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\lil date.jpeg">
+                <span class="polaroid__caption handwritten">Our precious dates</span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">Jaann</span>
+                <span>this is just one of the few dates that will forever be in my memory.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 5 — EDIT THIS MEMORY
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--five">
+          <button class="polaroid tilt-left" type="button" aria-expanded="false" aria-label="Flip Everyday Magic memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--sage" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\magic.jpeg">
+                <span class="polaroid__caption handwritten">Us in Love Everyday</span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">The little things</span>
+                <span>Even normal days become a special to me whever you are with me jaan.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+          <aside class="sticky-note sticky-note--yellow handwritten">more of this,<br>always please</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 6 — EDIT THIS MEMORY
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--six">
+          <aside class="sticky-note sticky-note--pink handwritten">You make<br>You look soo good in saree TwT</aside>
+          <button class="polaroid tilt-right" type="button" aria-expanded="false" aria-label="Flip Golden Hour memory">
+            <span class="polaroid__inner">
+              <span class="polaroid__front">
+                <span class="tape tape--cream" aria-hidden="true"></span>
+                <img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\golden (2).jpeg">
+                <span class="polaroid__caption handwritten">Traditionals, us ☀</span>
+              </span>
+              <span class="polaroid__back">
+                <span class="polaroid__back-title handwritten">A favorite frame</span>
+                <span>Replace this with a love note about this memory.</span>
+                <span class="polaroid__back-hint">tap to flip back ↺</span>
+              </span>
+            </span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 7 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--seven">
+          <aside class="sticky-note sticky-note--green handwritten">you + me =<br>my favorite plan</aside>
+          <button class="polaroid tilt-soft-left" type="button" aria-expanded="false" aria-label="Flip Photo 7 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--rose" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\silly.jpeg">Silly little us 🤍</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">Only you</span><span>can make me lose all my filters and be myself jaan.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 8 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--eight">
+          <button class="polaroid tilt-right" type="button" aria-expanded="false" aria-label="Flip Photo 8 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--cream" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\chaos.jpeg"><span class="polaroid__caption handwritten">The best kind of chaos ✦</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">My Chaos</span><span>You are the sweet little chaos that sparks up my life jaan.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+          <aside class="sticky-note sticky-note--beige handwritten">evidence that<br>you are toooo cutee</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 9 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--nine">
+          <aside class="postage-stamp" aria-label="Scrapbook stamp">LOVE<br>MAIL<br>♡</aside>
+          <button class="polaroid tilt-left" type="button" aria-expanded="false" aria-label="Flip Photo 9 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--sage" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\laugh.jpeg"><span class="polaroid__caption handwritten">You make me laugh like none other</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">My happy place</span><span>Somehow i cant stop smiling whenever i am with you jaan.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 10 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--ten">
+          <button class="polaroid tilt-soft-right" type="button" aria-expanded="false" aria-label="Flip Photo 10 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--rose" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\adventure.jpeg"><span class="polaroid__caption handwritten">A tiny adventure </span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">Us, outside</span><span>we have been through too many adventures in life akshathee</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+          <aside class="sticky-note sticky-note--yellow handwritten">wish we could<br>pause this day</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 11 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--eleven">
+          <aside class="sticky-note sticky-note--blue handwritten">my safe zone♡</aside>
+          <button class="polaroid tilt-right" type="button" aria-expanded="false" aria-label="Flip Photo 11 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--cream" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\WhatsApp Image 2026-03-29 at 4.38.20 PM.jpeg"><span class="polaroid__caption handwritten">Even from far away 💌</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">Still close</span><span>even when we were not togeather you were always my safe space my comfort zone.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 12 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--twelve">
+          <button class="polaroid tilt-soft-left" type="button" aria-expanded="false" aria-label="Flip Photo 12 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--sage" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\soft.jpeg"><span class="polaroid__caption handwritten">Soft days, sweet heart ☁</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">peak memory</span><span>never gonna forget those days.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+          <aside class="sticky-note sticky-note--pink handwritten">you felt<br>like home</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 13 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--thirteen">
+          <aside class="sticky-note sticky-note--green handwritten">cant forget</aside>
+          <button class="polaroid tilt-left" type="button" aria-expanded="false" aria-label="Flip Photo 13 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--rose" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\books.jpeg"><span class="polaroid__caption handwritten">One for the books 📖</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">Bus Rides</span><spanCan never forget our bus rides jaan.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 14 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--fourteen">
+          <button class="polaroid tilt-soft-right" type="button" aria-expanded="false" aria-label="Flip Photo 14 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--cream" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\still choose.jpeg"><span class="polaroid__caption handwritten">You are Minee</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">Every single time</span><span>you are the fish that i want need and got. And damnn i couldnt be more lucky to have youu.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+          <aside class="sticky-note sticky-note--beige handwritten">YOU<br>are my word for favorite</aside>
+        </article>
+
+        <!-- ============================================================
+             PHOTO 15 — EDIT IMAGE, CAPTION, SIDE NOTE, AND SECRET NOTE
+             ============================================================ -->
+        <article class="memory-cluster memory-cluster--fifteen">
+          <aside class="postage-stamp" aria-label="Scrapbook stamp">SPECIAL<br>DELIVERY<br>♥</aside>
+          <button class="polaroid tilt-right" type="button" aria-expanded="false" aria-label="Flip Photo 15 memory">
+            <span class="polaroid__inner"><span class="polaroid__front"><span class="tape tape--sage" aria-hidden="true"></span><img src="C:\Users\HP\Downloads\Happy-Montheversary\Images\many more.jpeg"><span class="polaroid__caption handwritten">To many more, jaan ♡</span></span><span class="polaroid__back"><span class="polaroid__back-title handwritten">The beginning</span><span>this is just the start for all our years to come jaan. This is just a quick recap for the start.</span><span class="polaroid__back-hint">tap to flip back ↺</span></span></span>
+          </button>
+        </article>
+      </div>
+
+      <section class="chapter-next" aria-label="Continue to the next chapter">
+        <p class="handwritten">Ready for a little challenge, shonaa?</p>
+        <button id="continue-to-puzzle" class="button button--primary" type="button">Continue to the mini game <span aria-hidden="true">→</span></button>
+      </section>
+    </section>
+
+    <!-- ================================================================
+         PAGE 3 — 3x3 PUZZLE + THE REAL TEST
+         The script creates the puzzle pieces from the image path below.
+         ================================================================ -->
+    <section id="challenge" class="screen challenge" hidden aria-labelledby="puzzle-title">
+      <!-- ==============================================================
+           CHANGE THE PUZZLE IMAGE HERE
+           Use a square photo for the nicest 3x3 puzzle.
+           Example: images/puzzle-photo.jpg
+           ============================================================= -->
+      <div id="puzzle-stage" class="challenge-stage" data-puzzle-image="images/puzzle.jpeg">
+        <header class="challenge-heading">
+          <p class="eyebrow">chapter two · little challenge</p>
+          <!-- CHANGE THE PUZZLE TITLE HERE -->
+          <h2 id="puzzle-title" class="handwritten">Lets seee you solve this hehehehe</h2>
+          <p>Tap any two puzzle pieces to swap them. Put the picture back together, shonaa ♡</p>
+        </header>
+
+        <div id="puzzle-grid" class="puzzle-grid" role="group" aria-label="Three by three photo puzzle"></div>
+        <p id="puzzle-message" class="challenge-message" role="status" aria-live="polite">One tiny memory, nine little pieces.</p>
+      </div>
+
+      <!-- Shown only after the puzzle is solved. -->
+      <section id="test-intro" class="test-card" hidden aria-labelledby="test-intro-title">
+        <span class="test-card__sparkle" aria-hidden="true">✦</span>
+        <!-- CHANGE THIS INTRO TEXT HERE -->
+        <h2 id="test-intro-title" class="handwritten">I knew it je eta parbaa</h2>
+        <p>But now comes the real testt…</p>
+        <p class="test-card__laugh handwritten">MUWAHAHAHAHA</p>
+        <button id="start-quiz" class="button button--primary" type="button">I am ready 😤</button>
+      </section>
+
+      <!-- ==============================================================
+           QUIZ QUESTION 1 — EDIT THE QUESTION/ANSWERS HERE
+           Correct answer is marked with data-correct="true".
+           ============================================================= -->
+      <section id="quiz-one" class="quiz-card" hidden aria-labelledby="quiz-one-title">
+        <p class="eyebrow">the real test · 01 / 03</p>
+        <h2 id="quiz-one-title">When did I first say I loved you?</h2>
+        <div class="answer-list" role="group" aria-label="Answers for question one">
+          <button class="answer-button" type="button">a) On our 1st date</button>
+          <button class="answer-button" type="button" data-correct="true">b) On tsc rickshaw</button>
+          <button class="answer-button" type="button">c) On your birthday</button>
+          <button class="answer-button" type="button">d) On text</button>
+        </div>
+        <p class="quiz-message" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ==============================================================
+           QUIZ QUESTION 2 — EDIT THE QUESTION/ANSWERS HERE
+           Correct answer is marked with data-correct="true".
+           ============================================================= -->
+      <section id="quiz-two" class="quiz-card" hidden aria-labelledby="quiz-two-title">
+        <p class="eyebrow">the real test · 02 / 03</p>
+        <h2 id="quiz-two-title">What is my fev?</h2>
+        <div class="answer-list" role="group" aria-label="Answers for question two">
+          <button class="answer-button" type="button">a) Sushi</button>
+          <button class="answer-button" type="button" data-correct="true">b) YOU ♡</button>
+          <button class="answer-button" type="button">c) Xbox</button>
+          <button class="answer-button" type="button">d) One Piece</button>
+        </div>
+        <p class="quiz-message" role="status" aria-live="polite"></p>
+      </section>
+
+      <!-- ==============================================================
+           LAST QUESTION — EDIT THE QUESTION/ANSWERS HERE
+           The YES button has data-love-answer="yes" and the NO button no.
+           ============================================================= -->
+      <section id="last-question" class="last-question" hidden aria-labelledby="last-question-title">
+        <p class="eyebrow">the real test · last question</p>
+        <p class="last-question__label handwritten">LAST Question.</p>
+        <h2 id="last-question-title" class="handwritten">DO YOU LOVE MEE???</h2>
+        <div class="love-answer-list">
+          <button class="button button--primary love-answer" type="button" data-love-answer="yes">YESSSS ♡</button>
+          <button class="button button--soft love-answer" type="button" data-love-answer="no">no ;-;</button>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           WRONG-ANSWER PAGE — CHANGE GIF + TEXT HERE
+           Put your chosen GIF in gifs/ and change the image path below.
+           ============================================================= -->
+      <section id="wrong-love-answer" class="wrong-answer" hidden aria-labelledby="wrong-answer-title">
+        <p class="eyebrow">umm… excuse me?</p>
+        <h2 id="wrong-answer-title" class="handwritten">WRONG ANSWER JAANNNNN</h2>
+        <p class="wrong-answer__sub handwritten">MAYBE BHULE DISOO TAY NAAA??</p>
+        <img src="gifs/knife.gif">
+        <button id="try-love-again" class="button button--primary" type="button">Try again, shonaa ♡</button>
+      </section>
+
+      <!-- Shown when she chooses YES. -->
+      <section id="love-success" class="love-success" hidden aria-labelledby="love-success-title">
+        <span aria-hidden="true" class="love-success__hearts">♡ ♥ ♡</span>
+        <h2 id="love-success-title" class="handwritten">YAYYYYY</h2>
+        <p class="handwritten">I knew itttt ♡</p>
+        <button id="continue-to-letter" class="button button--primary" type="button">There is one more thing… <span aria-hidden="true">→</span></button>
+      </section>
+    </section>
+
+    <!-- ================================================================
+         PAGE 4 — VINTAGE WAX-SEALED LETTER
+         ================================================================ -->
+    <section id="letter-page" class="screen letter-page" hidden aria-labelledby="letter-page-title">
+      <header class="letter-page__heading">
+        <p class="eyebrow">chapter three · just for you</p>
+        <h2 id="letter-page-title" class="handwritten">A Letter For You</h2>
+        <p>There is something waiting inside this envelope.</p>
+      </header>
+
+      <!-- Click this envelope to reveal the long letter below. -->
+      <button id="vintage-envelope" class="vintage-envelope" type="button" aria-expanded="false" aria-controls="love-letter">
+        <span class="envelope-flap" aria-hidden="true"></span>
+        <span class="envelope-paper" aria-hidden="true">
+          <span class="handwritten">for my favorite person ♡</span>
+        </span>
+        <span class="wax-seal" aria-hidden="true">♡</span>
+        <span class="sr-only">Open the wax-sealed letter</span>
+      </button>
+      <p id="envelope-hint" class="envelope-hint handwritten">Tap the wax seal to open, shonaa</p>
+
+      <!-- ==============================================================
+           THE LETTER — WRITE/REPLACE EVERYTHING IN THIS SECTION
+           Add more <p> paragraphs or photo blocks for an even longer letter.
+           ============================================================= -->
+      <article id="love-letter" class="love-letter" hidden aria-label="A letter written with love">
+        <div class="letter-top-decor" aria-hidden="true">❀</div>
+
+        <!-- ============================================================
+             CHANGE LETTER-PAGE SPOTIFY EMBED HERE
+             Replace only PASTE_YOUR_SPOTIFY_TRACK_ID_HERE in the src URL.
+             ============================================================ -->
+        <div class="letter-music">
+          <p class="handwritten">press play before you read this ♫</p>
+          <iframe
+            title="Our Spotify song for the letter"
+            class="spotify-embed"
+            src="https://open.spotify.com/embed/track/7iSWYBp3QGl3eQyv8l40hs?utm_source=generator&theme=0&si=d6847cb3f19d49ef"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
+        <p class="letter-greeting handwritten">Hiiii Shonaa,</p>
+
+        <!-- WRITE YOUR FIRST PARAGRAPH HERE -->
+        <p>Happy 28th Montheversary Babyyyyyy.
+28 FREAKING MONTHSSSSS😭😭😭. Heheheheheh 3years is not that far anymoreee. Jaaan 1st of all sorry ami hsc er jonno beshi kichu korte partesi na. And also ik this all is kinda(onek) cringe as well. Ami webite theke banayte chaisilam but aktao free painaaii😭 tay had to code this from scratch for like dayss. Heheheheheh i hope you like itt.</p>
+
+        <!-- LETTER PHOTO 1 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--left">
+          <span class="tape tape--rose" aria-hidden="true"></span>
+          <img src="images/1.jpeg">
+          <figcaption class="handwritten">one of my favorite us moments ♡</figcaption>
+        </figure>
+
+        <!-- WRITE YOUR SECOND PARAGRAPH HERE -->
+        <p>And jaaan I'll be honest and talk about yhe elephant in the room. Honestly i really couldn't bring my self to call you my jaan ba any pet names for the past few days. Not because of the fight we had but rather i didn't think it was right for me to call you that ar cuz in no way i deserve to call you my jaaan ba amar shona after what i was putting you through. Ei letter e ami use kortesi cuz i want to make amendments with my actions for what i did</p>
+
+        <!-- LETTER PHOTO 2 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--right">
+          <span class="tape tape--sage" aria-hidden="true"></span>
+          <img src="images/golden.jpeg">
+          <figcaption class="handwritten">I managed to almost ruin this</figcaption>
+        </figure>
+
+        <!-- WRITE YOUR THIRD PARAGRAPH HERE -->
+        <p> I can't undo what i did zulfa. I can't make you trust me ba sweet talk my way out of this. I will not run away from hard conversation ba i wont forgot je before this relationship comes, you come for me zulfa. Without thinking about you, your feelings and your thoughts this relationship means nothing. And you feeling helpess and unheard here breaks the whole point of this relationship.</p>
+
+        <!-- LETTER PHOTO 3 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--left"><span class="tape tape--cream" aria-hidden="true"></span><img src="images/DSC01627.JPG"><figcaption class="handwritten"I made you lose that smile for me</figcaption></figure>
+        <!-- LETTER PHOTO 4 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--right"><span class="tape tape--rose" aria-hidden="true"></span><img src="images/DSC01566.JPG"><figcaption class="handwritten">I lost something that was most precious for me</figcaption></figure>
+
+        <!-- WRITE ANOTHER LETTER PARAGRAPH HERE -->
+        <p>And the fact je i made you feel like that is my fault. But zulfa i wont let this relationship turn towards that. Yes i was the one anchoring us towards that path but after our conversation you made me understand what i was actually doing. Zulfa i wont ever make you feel like i am plaing the victim card, make you feel its your fault to express your thoughts, make you feel guilty and act like a dicktim. Ik im telling your name wayyy too much and you hate itt. But let me express ajkeee. </p>
+
+        <!-- LETTER PHOTO 5 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--left"><span class="tape tape--sage" aria-hidden="true"></span><img src="images/lovo.jpeg"><figcaption class="handwritten">I want to make you smile like that again</figcaption></figure>
+        <!-- LETTER PHOTO 6 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--right"><span class="tape tape--cream" aria-hidden="true"></span><img src="images/sol.jpeg"><figcaption class="handwritten">you, being silyy around mee</figcaption></figure>
+
+        <!-- LETTER PHOTO 7 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--left"><span class="tape tape--rose" aria-hidden="true"></span><img src="images/us.jpeg"><figcaption class="handwritten">us having fun being us</figcaption></figure>
+        <!-- LETTER PHOTO 8 — Replace this image path with one of your own photos. -->
+        <figure class="letter-photo letter-photo--right"><span class="tape tape--sage" aria-hidden="true"></span><img src="images/ola.jpeg"><figcaption class="handwritten">being whatever this is</figcaption></figure>
+
+        <p>Zulfa jaaan loving you has been my greatest decision and being able to be with you had been greatest opportunity i got. Never have i ever thought I'd be able to soend soo much time with a girl i would consider my world. Never have i ever thought that i would be head over hills and trust a girl soo much that i am waiting to spend each day of my life with her. Never have i thought age je spending 2.4 years with someone will feel like i have spend my whole life with them. Someone who makes me smile from ear to ear just being with me both in online or offline. Zulfa you made me feel for me to be the best of myself. Got worried for me when i was in trouble, was with me when i was in down, was laughing with me when i was happy, and celebrated with me when i won. But my biggest win was the day you said yes to me zulfa. My win was when you trusted me to share your world with me. Let me in your inner thoughts made me feel i was always a part of your life. Made me feel the most wanted and most treasured. Zulfa i won when you trusted me with opening upto me. When you entrusted me your first kiss. Each time you let me hold your hand. Grab your waist and you lean on my shoulder. </p>
+
+<p>Zulfa i know i told you 1000s of times how much i am attracted you but since day one till yhe very end, your smile, your eyes your laugh, your moods, your hands, your waist, your hair there is nothing that i am not in love with yours. But the thing from day 0 that made me fall for you was youu, the way you are there for you people, the way you are responsible, how you laughh and act and how you always have that adorable side of yourss. And after starting this relationship i fell for that part of you all over again deeper than everr and got to know parts of you that just pulled me in even more. Zulfa all that blabbering i did just now just ment to express one thibg which is you are the best thing that happened to me. Yes the fear of losing you made me at times paranoid and made me do stuff that hurt you even more. My overthinking is what that escalated things always. Zulfa i want to earn that trust and your love back again. And im willing to do amything for that but this time not by losing myself to my overthinking but rather loving you being me, the one you fell for and the one you trusted. I Love You Sooo much Zulfa. You are and always be my Jaann. The one i call my shonaa. My pakhi and my partner of everyday everymoment. Jaaan i know you said we should get over it and ik you need time to bring how things were age. But I really misss youu. I can't bear not calling you my jaaan properly. I dont want to overwhelm you and make all go away with sweet names and words but i can't not call you properly and feel normal. But dw i know you need time for you to properly trust and love me again. And i understand that. And from now on i will love you properly the way the person you fell for did. And this time not by love bombing you nor playing the victim card or being a dicktim but this time by earninh your respect as well. </p>
+
+<p>So I'll wait till however long it takes for you to trust me again to call me your jaan and your potatoo as well amar jaaann. This sagol of yours loves you with all he had, has and will have to offer amar jaann. I lovee youuu. Hehehehe.</p>
+        <p class="letter-signoff handwritten">Always yours,<br><span>Your Potatoo♡</span></p>
+      </article>
+
+      <div id="archive-invitation" class="archive-invitation" hidden>
+        <p class="handwritten">One last page in this weird website…</p>
+        <button id="continue-to-archive" class="button button--primary" type="button">Open our little museum <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         PAGE 6 — OUR LITTLE MUSEUM / ARCHIVE
+         The 25 archive memories are easy to edit in script.js.
+         ================================================================ -->
+    <section id="archive" class="screen archive" hidden aria-labelledby="archive-title">
+      <header class="archive-hero">
+        <p class="eyebrow">chapter six · all our little things</p>
+        <!-- CHANGE ARCHIVE TITLE + SUBTITLE HERE -->
+        <h2 id="archive-title" class="handwritten">Our archive ❤️</h2>
+        <p>Hehehe thought that some pictures needed to be kept here.</p>
+
+        <!-- ============================================================
+             CHANGE ARCHIVE SPOTIFY EMBED HERE
+             Replace only PASTE_YOUR_SPOTIFY_TRACK_ID_HERE in the src URL.
+             ============================================================ -->
+        <div class="music-card archive-music">
+          <div class="music-card__label"><span aria-hidden="true">♫</span><span class="handwritten">the soundtrack of us</span></div>
+          <iframe title="Our Spotify song for the archive" class="spotify-embed" src="https://open.spotify.com/embed/track/7iSWYBp3QGl3eQyv8l40hs?utm_source=generator&theme=0&si=d6847cb3f19d49ef" width="100%" height="152" frameborder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </header>
+
+      <!-- The script inserts 25 editable, flippable memories here. -->
+      <section class="museum-timeline" aria-label="Our timeline of memories">
+        <div id="archive-timeline" class="archive-timeline"></div>
+      </section>
+
+      <!-- ==============================================================
+           FUTURE MEMORIES — EDIT THE TEXT HERE
+           ============================================================= -->
+      <section class="archive-section future-memories" aria-labelledby="future-title">
+        <p class="eyebrow">the best is still coming</p>
+        <h3 id="future-title" class="handwritten">Future Memories</h3>
+        <div class="future-polaroid-row">
+          <article class="future-polaroid"><span>♡</span><p class="handwritten">Coming Soon</p><small>our next dates</small></article>
+          <article class="future-polaroid"><span>✦</span><p class="handwritten">Coming Soon</p><small>100s of more adventures</small></article>
+          <article class="future-polaroid"><span>❀</span><p class="handwritten">Coming Soon</p><small>and a thousand more laughs</small></article>
+        </div>
+      </section>
+
+      <!-- ==============================================================
+           REASONS I LOVE YOU — EDIT THE REASONS IN script.js
+           ============================================================= -->
+      <section class="archive-section reasons-section" aria-labelledby="reasons-title">
+        <p class="eyebrow">the list will be unending tay koektaa</p>
+        <h3 id="reasons-title" class="handwritten">Reasons I Love You</h3>
+        <div id="reasons-grid" class="reasons-grid"></div>
+      </section>
+
+      <!-- ==============================================================
+           OUR BUCKET LIST — CHANGE THE CHECKLIST ITEMS HERE
+           ============================================================= -->
+      <section class="archive-section bucket-section" aria-labelledby="bucket-title">
+        <p class="eyebrow">someday, together</p>
+        <h3 id="bucket-title" class="handwritten">Our Bucket List</h3>
+        <ul class="bucket-list">
+          <li><label><input type="checkbox"> Eat a food we have never tried together</label></li>
+          <li><label><input type="checkbox"> take you to photo-booth</label></li>
+          <li><label><input type="checkbox"> go to the movies</label></li>
+          <li><label><input type="checkbox"> surprise date</label></li>
+          <li><label><input type="checkbox"> have a sushi feast</label></li>
+          <li><label><input type="checkbox"> being there for eachother always</label></li>
+        </ul>
+      </section>
+
+      <!-- ==============================================================
+           RANDOM MEMORIES — EDIT THE MINI POLAROIDS IN script.js
+           ============================================================= -->
+      <section class="archive-section random-section" aria-labelledby="random-title">
+        <p class="eyebrow">a few last touches</p>
+        <h3 id="random-title" class="handwritten">Random Memories</h3>
+        <div id="random-memory-grid" class="random-memory-grid"></div>
+      </section>
+
+      <footer class="archive-ending">
+        <p class="handwritten">I LOVE YOU ZULFA </p>
+        <span aria-hidden="true">♡Happy Montheversary♡</span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- PART 1 SCRIPT FILE: keep script.js in this same folder. -->
+  <script src="script.js" defer></script>
+</body>
+</html>
